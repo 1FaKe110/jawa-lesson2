@@ -1,3 +1,39 @@
+
+/*
+не доделал сортировку
+
+вопрос, в функции deleteAll() |200 строка| 
+если в условие цикла поставить не переменную, в которой лежит результат выполнения фукции, а саму функцию,
+то цикл делает на 1 проход меньше, почему?
+
+public void deleteAll(int value) {
+        int elems = findAll(value); // 23 строка
+
+        for (int i = 0; i < elems; i++) { // сделает 3 прохода, если мы ищем число 2 в массиве   Array a0 = new Array(1, 2, 3, 2, 2, 1, 3, 0);
+            deleteValue(value);
+        }
+    }
+
+public void deleteAll(int value) {
+        for (int i = 0; i < findAll(value); i++) { // сделает 2 прохода, если мы ищем число 2 в массиве   Array a0 = new Array(1, 2, 3, 2, 2, 1, 3, 0);
+            deleteValue(value);
+        }
+    }
+    
+public int findAll(int value) {
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+        if (value == arr[i]) counter += 1;
+    }
+    return counter;
+}
+
+*/
+
+
+
+
+
 package com.company.HW;
 
 import javax.lang.model.type.NullType;
@@ -69,6 +105,25 @@ public class Array {
         isSorted = false;
         if (size >= arr.length) increaseCapacity();
         arr[size++] = value;
+    }
+
+    public int[] insert(int index, int value) {
+        if (index > size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
+        int[] temp = new int[size + 1];
+
+        for (int i = 0; i < index; i++) {
+            temp[i] = arr[i];
+        }
+        temp[index] = value;
+
+
+        for (int i = index + 1; i < size + 1; i++) {
+            temp[i] = arr[i - 1];
+        }
+        return temp;
     }
 
     public int find(int value) {
@@ -208,6 +263,5 @@ public class Array {
     }
 
     // доделать
-    // insert(int index, int value);
     // sortCounting()
 }
